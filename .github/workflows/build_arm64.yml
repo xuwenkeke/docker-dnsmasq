@@ -14,15 +14,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: jpillora/docker-dnsmasq
-          ref: 1.1.0
+          repository: xuwenkeke/docker-dnsmasq
+          ref: main
           token: ${{ secrets.GH_TOKEN }}
-      -
-        name: fix dockerfile
-        run: |
-          sed -i 's/0.2.2/v0.4.0/g' Dockerfile
-          sed -i 's/webproc_linux_amd64.gz/webproc_0.4.0_linux_arm64.gz/g' Dockerfile
-          cat Dockerfile
+#      -
+#        name: fix dockerfile
+#        run: |
+#          sed -i 's/0.2.2/v0.4.0/g' Dockerfile
+#          sed -i 's/webproc_linux_amd64.gz/webproc_0.4.0_linux_arm64.gz/g' Dockerfile
+#          cat Dockerfile
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1        
@@ -43,7 +43,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm,linux/arm64
           tags: ${{ env.DOCKER_HUB_TAG }}
       -
         name: Image digest
