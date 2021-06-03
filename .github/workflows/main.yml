@@ -45,7 +45,7 @@ jobs:
       -
         name: Test
         run: |
-          docker run --name dnsmasq -d -p 53:53/udp -p 5380:8080 ${{ env.DOCKER_HUB_TAG }}
-          netstat -natup | grep 53
+          docker run --name dnsmasq -d -p 153:53/udp -p 5380:8080 ${{ env.DOCKER_HUB_TAG }}
+          netstat -natup | grep 153
           netstat -natup | grep 5300
           sleep 5 && curl -v http://localhost:5300/
