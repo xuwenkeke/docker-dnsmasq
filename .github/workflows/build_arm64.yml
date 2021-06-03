@@ -53,4 +53,5 @@ jobs:
         run: |
           docker run  --platform linux/arm64 --name dnsmasq -d -p 153:53/udp -p 5380:8080 ${{ env.DOCKER_HUB_TAG }}
           netstat -natup | grep 53
+          docker logs dnsmasq
           sleep 5 && curl -v http://localhost:5380/
